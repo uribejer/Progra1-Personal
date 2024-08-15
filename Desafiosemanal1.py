@@ -1,11 +1,11 @@
 import random
 
 def imprimir_matriz_calificaciones(matriz_calificaciones):
-cont = 0
-for fila in matriz_calificaciones:
-    cont = cont + 1
-    print("Estudiante ", cont)
-    print(fila)
+    cont = 0
+    for fila in matriz_calificaciones:
+        cont = cont + 1
+        print("Estudiante ", cont)
+        print(fila)
 
 def promedio_calificaciones(matriz_calificaciones):
     cont = 0
@@ -24,7 +24,7 @@ matriz_calificaciones = []
 # Aca llenamos la matriz con calificaciones aleatroias
 for x in range(num_estudiantes):
 # Creamos una lista vacia para las calificaciones de los estudiantes
-calificaciones_estudiante = []
+    calificaciones_estudiante = []
 
 # Agregamos las calificaciones aleatorias para cada materia
 for y in range(num_materias):
