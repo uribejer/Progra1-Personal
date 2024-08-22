@@ -1,39 +1,66 @@
 import random
 
-def imprimir_matriz_calificaciones(matriz_calificaciones):
-    cont = 0
-    for fila in matriz_calificaciones:
-        cont = cont + 1
-        print("Estudiante ", cont)
-        print(fila)
+def mostrar_matriz(matriz_calificaciones, n, m):
+    # Encabezado de MATERIAS
+    print(" "*14, end="")
+    for j in range(1, m+ 1):
+        print(" "*4, "Materia", j, end="")
+    print()
+
+    # Encabezados de ESTUDIANTES
+    i = 0
+    for fila in (matriz_calificaciones):
+        print("Estudiante: ", (i + 1), end="")
+        for calificacion in fila:
+            print(" "*10, calificacion, end=" ")
+        print()
+        i = i + 1
 
 def promedio_calificaciones(matriz_calificaciones):
-    cont = 0
+    i = 0
     for fila in matriz_calificaciones:
-        cont = cont + 1
         suma = 0
-        for calificacion in fila:
-            suma = suma + calificacion
+        j = 0
+        while j < len(fila):
+            suma += fila[j]
+            j = j + 1
         promedio = suma / len(fila)
-        print("El promedio de calificaciones del estudiante ", cont, " es: ", promedio)
+        print("El promedio de calificaciones del Estudiante: ", (i + 1), " es: ", (promedio))
+        i += 1
+
+def calcular_promedio_materias(matriz_calificaciones):
+    num_materias = len(matriz_calificaciones[0])
+    for j in range(num_materias):
+        suma = 0
+        for fila in matriz_calificaciones:
+            suma = suma + fila[j]
+        promedio = suma / len(matriz_calificaciones)
+        print("El promedio de calificaciones en la Materia", (j + 1), " es: ", (promedio))
+
 
 # Definir el número de estudiantes y materias
-num_estudiantes = 5 # cantidad de filas
-num_materias = 3 # cantidad de columnas
+n = int(input("Ingrese el nro de estudiantes: "))  # seria nuestra cantidad de filas
+m = int(input("Ingrese el nro de materias: "))     # seria nuestra cantidad de columnas
+
 matriz_calificaciones = []
-# Aca llenamos la matriz con calificaciones aleatroias
-for x in range(num_estudiantes):
-# Creamos una lista vacia para las calificaciones de los estudiantes
+
+# Llenar la matriz con calificaciones aleatorias 
+for x in range(n):
     calificaciones_estudiante = []
+    for y in range(m):
+        calificacion = random.randint(1, 10)
+        calificaciones_estudiante.append(calificacion)
+    matriz_calificaciones.append(calificaciones_estudiante)
 
-# Agregamos las calificaciones aleatorias para cada materia
-for y in range(num_materias):
-	calificacion = random.randint(1, 10)
-	calificaciones_estudiante.append(calificacion)
-
-
-# A las calificaciones a la matriz de estudiantes
-matriz_calificaciones.append(calificaciones_estudiante)
-imprimir_matriz_calificaciones(matriz_calificaciones)
+# Mostrar la matriz con encabezados
+mostrar_matriz(matriz_calificaciones, n, m)
+print()
+print("PROMEDIO CALIFCIACIONES PARA CADA ESTUDIANTE")
+# Imprimir los promedios de calificaciones por estudiante
+print()
 promedio_calificaciones(matriz_calificaciones)
-# Aca se imprimirian las calificaciones
+print()
+print("PROMEDIO CALIFCIACIONES PARA CADA MATERIA")
+print()
+# Calcular y mostrar los promedios de calificaciones por materia
+calcular_promedio_materias(matriz_calificaciones)
